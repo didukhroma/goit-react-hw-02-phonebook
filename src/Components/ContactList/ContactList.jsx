@@ -1,4 +1,5 @@
 import ListItem from '../ListItem/ListItem';
+import PropTypes from 'prop-types';
 
 const ContactList = ({ contacts, onClick }) => {
   return (
@@ -9,5 +10,8 @@ const ContactList = ({ contacts, onClick }) => {
     </ul>
   );
 };
-
+ContactList.propTypes = {
+  contacts: PropTypes.array,
+  onClick: PropTypes.func,
+};
 export default ContactList;

@@ -3,6 +3,7 @@ import ContactForm from '../ContactForm';
 import ContactList from '../ContactList';
 import Filter from '../Filter';
 import searchName from '../../utils/searchName';
+import styles from './App.module.css';
 
 class App extends Component {
   state = {
@@ -20,15 +21,17 @@ class App extends Component {
     const { name } = data;
     const { contacts } = this.state;
     const isFind = searchName(contacts, name);
+
     if (isFind) {
       alert(`${name} is already in contacts.`);
-
       return;
     }
+
     this.setState(prevState => ({
       contacts: [...prevState.contacts, data],
     }));
   };
+
   deleteContactById = id => {
     this.setState(prevState => {
       return {
@@ -36,6 +39,7 @@ class App extends Component {
       };
     });
   };
+
   filterHandler = event => {
     const {
       target: { value },
@@ -44,6 +48,7 @@ class App extends Component {
       filter: value,
     }));
   };
+
   getCurrentContacts = () => {
     const { filter, contacts } = this.state;
     const regExp = new RegExp(filter, 'gi');
@@ -58,8 +63,8 @@ class App extends Component {
   render() {
     const currentContacts = this.getCurrentContacts();
     return (
-      <div className="App">
-        <h1>PhoneBook</h1>
+      <div className={styles.app}>
+        <h1>Phonebook</h1>
         <ContactForm onSubmit={this.addNewContact} />
         <h2>Contacts</h2>
         <Filter onChange={this.filterHandler} />
